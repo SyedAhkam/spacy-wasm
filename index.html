@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spacy on wasm</title>
+  </head>
+  <body style="padding: 16px">
+    <form
+      id="form"
+      action=""
+      style="
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+      "
+    >
+      <textarea
+        id="input"
+        style="min-height: 200px; min-width: 70%"
+        placeholder="Enter text here"
+        value="Hello! Guess what? I'm running Python in your browser!\n\nMy name is Clara and I live in Berkeley, California."
+      ></textarea>
+
+      <button
+        type="submit"
+        style="font-size: large; padding: 0.5rem 1rem"
+        id="submit"
+        disabled
+      >
+        Model is loading...
+      </button>
+    </form>
+
+    <div id="output"></div>
+
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.21.0/full/pyodide.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
