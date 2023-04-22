@@ -2,7 +2,7 @@ async function loadPackages(pyodide) {
   await pyodide.loadPackage(["micropip", "numpy", "pydantic"]);
 }
 
-async function load_visualize(pyodide) {
+async function loadVisualize(pyodide) {
   let python_script = await fetch("/visualize.py").then((r) => r.text());
 
   return await pyodide.runPythonAsync(python_script);
@@ -20,11 +20,17 @@ function onSubmitForm(e) {
 }
 
 async function main() {
+  // Set default value for input
+  document.getElementById("input").value =
+    "Hello! Guess what? I'm running Python in your browser!\n\nMy name is Clara and I live in Berkeley, California.";
+
+  // Load Pyodide and packages
   let pyodide = await loadPyodide();
 
   await loadPackages(pyodide);
 
-  document.vis_fn = await load_visualize(pyodide);
+  // Load visualize function
+  document.vis_fn = await loadVisualize(pyodide);
 
   // Enable the form button and change label
   document.getElementById("submit").disabled = false;
