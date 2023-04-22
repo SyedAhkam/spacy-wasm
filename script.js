@@ -8,17 +8,6 @@ async function loadVisualize(pyodide) {
   return await pyodide.runPythonAsync(python_script);
 }
 
-function onSubmitForm(e) {
-  console.log("submitting form");
-  e.preventDefault();
-
-  let input = document.getElementById("input").value;
-
-  let html = document.vis_fn(input);
-
-  document.getElementById("output").innerHTML = html;
-}
-
 async function main() {
   // Set default value for input
   document.getElementById("input").value =
@@ -30,7 +19,7 @@ async function main() {
   await loadPackages(pyodide);
 
   // Load visualize function
-  document.vis_fn = await loadVisualize(pyodide);
+  vis_fn = await loadVisualize(pyodide);
 
   // Enable the form button and change label
   document.getElementById("submit").disabled = false;
@@ -42,7 +31,7 @@ async function main() {
 
     let input = document.getElementById("input").value;
 
-    let html = document.vis_fn(input);
+    let html = vis_fn(input);
 
     document.getElementById("output").innerHTML = html;
   });
